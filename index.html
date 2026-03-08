@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Women's Day 💐</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+
+font-family:'Poppins',sans-serif;
+
+background: radial-gradient(circle at top,#deb9be,#e2555d,#ce4242);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:white;
+text-align:center;
+}
+
+/* TITLE */
+
+.title{
+position:absolute;
+top:7%;
+
+font-size:48px;
+
+font-family:'Dancing Script',cursive;
+
+letter-spacing:2px;
+
+text-shadow:
+0 0 10px white,
+0 0 20px #ff7aa5,
+0 0 40px #ff2e63;
+
+animation:titleGlow 2s infinite alternate;
+}
+
+/* SUBTITLE */
+
+.subtitle{
+position:absolute;
+top:18%;
+
+font-size:22px;
+
+width:80%;
+
+line-height:1.8;
+
+letter-spacing:0.5px;
+
+opacity:0.95;
+}
+
+@keyframes titleGlow{
+from{transform:scale(1)}
+to{transform:scale(1.05)}
+}
+
+/* CAT */
+
+.cat{
+position:absolute;
+
+width:160px;
+height:160px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+box-shadow:
+0 0 30px white,
+0 0 70px #ff7aa5,
+0 0 120px #ff2e63;
+
+z-index:10;
+
+animation:catFloat 3s ease-in-out infinite;
+}
+
+@keyframes catFloat{
+
+0%{transform:translateY(0)}
+
+50%{transform:translateY(-10px)}
+
+100%{transform:translateY(0)}
+
+}
+
+/* HEART ROSES */
+
+.rose{
+position:absolute;
+
+font-size:22px;
+
+pointer-events:none;
+
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+
+50%{transform:translateY(-8px)}
+
+100%{transform:translateY(0)}
+
+}
+
+/* FALLING ROSES */
+
+.rose-fall{
+
+position:absolute;
+
+top:-50px;
+
+font-size:26px;
+
+pointer-events:none;
+
+animation:fall linear forwards;
+
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0.9;
+}
+
+}
+
+/* SPARKLE */
+
+.sparkle{
+
+position:absolute;
+
+width:4px;
+height:4px;
+
+background:white;
+
+border-radius:50%;
+
+box-shadow:
+0 0 10px white,
+0 0 20px pink;
+
+animation:sparkle 2s infinite;
+
+}
+
+@keyframes sparkle{
+
+0%,100%{opacity:0}
+
+50%{opacity:1}
+
+}
+
+/* CLICK EFFECT */
+
+.bloom{
+
+position:absolute;
+
+font-size:38px;
+
+pointer-events:none;
+
+animation:bloom 1s forwards;
+
+}
+
+@keyframes bloom{
+
+0%{
+transform:scale(0);
+opacity:0;
+}
+
+100%{
+transform:scale(1.6);
+opacity:1;
+}
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:20px;
+
+pointer-events:none;
+
+animation:heartFly 1.5s forwards;
+
+}
+
+@keyframes heartFly{
+
+0%{
+transform:translateY(0) scale(0.6);
+opacity:1;
+}
+
+100%{
+transform:translateY(-140px) scale(1.6);
+opacity:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="title">🌹 Happy Women's Day 🌹</div>
+
+<div class="subtitle">
+
+Chúc bạn một ngày 8/3 thật rạng rỡ ✨ <br>
+
+Luôn xinh đẹp, hạnh phúc và được yêu thương mỗi ngày 💖
+
+</div>
+
+<img src="meo.jpg" class="cat" id="cat">
+
+<script>
+
+/* HEART FORMULA */
+
+function heart(t){
+
+let x=16*Math.pow(Math.sin(t),3);
+
+let y=13*Math.cos(t)
+
+-5*Math.cos(2*t)
+
+-2*Math.cos(3*t)
+
+-Math.cos(4*t);
+
+return {x,y};
+
+}
+
+/* HEART CENTER */
+
+let centerX = window.innerWidth/2;
+
+let centerY = window.innerHeight/2 + 80;
+
+/* CREATE HEART */
+
+for(let i=0;i<200;i++){
+
+let t=Math.random()*Math.PI*2;
+
+let p=heart(t);
+
+let rose=document.createElement("div");
+
+rose.className="rose";
+
+rose.innerHTML="🌹";
+
+let x = centerX + p.x*15;
+
+let y = centerY - p.y*15;
+
+rose.style.left=x+"px";
+
+rose.style.top=y+"px";
+
+document.body.appendChild(rose);
+
+}
+
+/* CAT POSITION */
+
+let cat=document.getElementById("cat");
+
+cat.style.left=(centerX - 67)+"px";
+
+cat.style.top=(centerY - 25)+"px";
+
+/* SPARKLE */
+
+setInterval(()=>{
+
+for(let i=0;i<4;i++){
+
+let s=document.createElement("div");
+
+s.className="sparkle";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),2000);
+
+}
+
+},80);
+
+/* FALLING ROSES */
+
+setInterval(()=>{
+
+let rose=document.createElement("div");
+
+rose.className="rose-fall";
+
+rose.innerHTML="🌹";
+
+rose.style.left=Math.random()*100+"vw";
+
+let duration = 5 + Math.random()*4;
+
+rose.style.animationDuration=duration+"s";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+
+rose.remove();
+
+},duration*1000);
+
+},300);
+
+/* CLICK EFFECT */
+
+document.addEventListener("click",e=>{
+
+for(let i=0;i<10;i++){
+
+let flower=document.createElement("div");
+
+flower.className="bloom";
+
+flower.innerHTML="🌸";
+
+flower.style.left=(e.clientX + Math.random()*60-30)+"px";
+
+flower.style.top=(e.clientY + Math.random()*60-30)+"px";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>flower.remove(),1000);
+
+}
+
+for(let i=0;i<6;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💗";
+
+heart.style.left=(e.clientX + Math.random()*40-20)+"px";
+
+heart.style.top=e.clientY+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),1500);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
